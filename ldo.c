@@ -10,7 +10,9 @@
 #include "lprefix.h"
 
 
+#ifndef __wasm
 #include <setjmp.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
 
@@ -60,7 +62,9 @@
 /* chained list of long jump buffers */
 typedef struct lua_longjmp {
   struct lua_longjmp *previous;
+#ifndef __wasm
   jmp_buf b;
+#endif
   volatile TStatus status;  /* error code */
 } lua_longjmp;
 

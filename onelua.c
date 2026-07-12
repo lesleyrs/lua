@@ -15,6 +15,27 @@
 **
 */
 
+#ifdef __wasm
+// NOTE: use #define MAKE_LIB for wasm not interpreter, browser console isn't considered interactive for wasm
+
+// temp pdclib fix
+#define _PDCLIB_HUGE_VAL 1.7976931348623157E+308
+
+#define l_system(cmd) (0)
+#define LUAI_THROW(L,c)
+#define LUAI_TRY(L,c,f,ud) ((f)(L, ud))
+
+// don't use these funcs obviously
+double frexp(double x, int *e) {
+    return -1;
+}
+
+#include <stdio.h>
+FILE *tmpfile(void) {
+    return NULL;
+}
+#endif
+
 /* default is to build the full interpreter */
 #ifndef MAKE_LIB
 #ifndef MAKE_LUAC
@@ -57,7 +78,9 @@
 #include <limits.h>
 #include <locale.h>
 #include <math.h>
+#ifndef __wasm
 #include <setjmp.h>
+#endif
 #include <signal.h>
 #include <stdarg.h>
 #include <stddef.h>
