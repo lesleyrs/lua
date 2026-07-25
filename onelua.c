@@ -18,9 +18,6 @@
 #ifdef __wasm
 // NOTE: use #define MAKE_LIB for wasm not interpreter, browser console isn't considered interactive for wasm
 
-// temp pdclib fix
-#define _PDCLIB_HUGE_VAL 1.7976931348623157E+308
-
 #define l_system(cmd) (0)
 #define LUAI_THROW(L,c)
 #define LUAI_TRY(L,c,f,ud) ((f)(L, ud))
