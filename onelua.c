@@ -26,6 +26,9 @@
 double frexp(double x, int *e) {
     return -1;
 }
+float frexpf(float x, int *e) {
+    return -1;
+}
 
 #include <stdio.h>
 FILE *tmpfile(void) {
