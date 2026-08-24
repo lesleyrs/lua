@@ -19,7 +19,7 @@
 // NOTE: use #define MAKE_LIB for wasm not interpreter, browser console isn't considered interactive for wasm
 
 #define l_system(cmd) (0)
-#define LUAI_THROW(L,c)
+#define LUAI_THROW(L,c) (fprintf(stderr, "LUAI_THROW not implemented: status %d\n", L->errorJmp->status));
 #define LUAI_TRY(L,c,f,ud) ((f)(L, ud))
 
 // don't use these funcs obviously
